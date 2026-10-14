@@ -1,0 +1,18 @@
+PROGRESSION - Steam Profile Explorer
+
+2026-10-14 - Stage 0: Tools and git (DONE)
+Done:
+- Checked .NET 10 SDK and git, set git name/email
+- Created GitHub repo, first commit, pushed to GitHub
+- Got Steam API key, tested GetPlayerSummaries in browser
+- Console project + key stored in user secrets
+- Key-leak protection: .gitignore, pre-commit hook, GitHub secret scan
+- First branch + pull request (#1), merged
+Mistakes and fixes:
+- Typos (git comit, get, test.text): read the error, git suggests the fix
+- Push blocked by private email: switched to GitHub noreply email, git commit --amend --reset-author
+- Wrong project folder name (Xli): deleted folder, recreated
+- Pasted key inside the command: Ctrl+C, checked PowerShell history was clean
+- Commit typo "agains": left as is, never amend pushed commits
+Learned: commit, staging, push, origin, diff, branch, PR, user secrets
+Next: Stage 1 - console Steam client in C#
