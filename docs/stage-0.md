@@ -5,3 +5,9 @@ created git files that will remember history
 set up a README.md
 and now "commit"ting my progress
 
+Push - this pushes the commit files created on a local pc
+
+Origin - is one of the remote "pc" or workstation that files were committed from
+
+
+
