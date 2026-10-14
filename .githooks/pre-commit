@@ -1,0 +1,34 @@
+#!/bin/sh
+# Stops a commit that could leak the Steam Web API key.
+# Turn it on once per clone with:  git config core.hooksPath .githooks
+# See docs/secrets.md for why and how.
+
+fail=0
+
+# 1. Files that hold secrets must never be committed.
+blocked_files=$(git diff --cached --name-only --diff-filter=ACMR |
+  grep -iE '(^|/)(secrets\.json|\.env(\..*)?|.*\.pfx|.*\.key)$')
+if [ -n "$blocked_files" ]; then
+  echo "BLOCKED: these files can hold secrets and must not be committed:"
+  echo "$blocked_files" | sed 's/^/  /'
+  fail=1
+fi
+
+# 2. A Steam Web API key is 32 hex characters. Look for that in added lines.
+#    Only file names are printed, never the matching text.
+for file in $(git diff --cached --name-only --diff-filter=ACMR); do
+  if git diff --cached -U0 --no-color -- "$file" | grep '^+' | grep -v '^+++' |
+     grep -Eq '(^|[^0-9A-Fa-f])[0-9A-Fa-f]{32}([^0-9A-Fa-f]|$)'; then
+    echo "BLOCKED: $file adds 32 hex characters in a row, which looks like a Steam API key."
+    fail=1
+  fi
+done
+
+if [ "$fail" -ne 0 ]; then
+  echo ""
+  echo "Keep the key in dotnet user-secrets, not in files. See docs/secrets.md."
+  echo "Unstage a file with:  git restore --staged <file>"
+  exit 1
+fi
+
+exit 0

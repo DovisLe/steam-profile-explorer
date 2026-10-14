@@ -1,2 +1,5 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SteamProfileExplorer.Cli/SteamProfileExplorer.Cli.csproj" />
+  </Folder>
 </Solution>

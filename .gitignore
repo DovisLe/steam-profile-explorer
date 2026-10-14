@@ -480,3 +480,11 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# --- Secrets: never commit these (see docs/secrets.md) ---
+secrets.json
+.env
+.env.*
+*.pfx
+*.key
+appsettings.*.local.json
