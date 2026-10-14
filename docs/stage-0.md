@@ -7,7 +7,5 @@ and now "commit"ting my progress
 
 Push - this pushes the commit files created on a local pc
 
-Origin - is one of the remote "pc" or workstation that files were committed from
-
-
+Origin - its the name the PC uses for the GitHub address
 
